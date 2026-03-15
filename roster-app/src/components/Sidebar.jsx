@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import { useRoster } from '../context/RosterContext';
-import { Search, Plus, Users, FlaskConical, Droplets, ChevronDown, GripVertical } from 'lucide-react';
+import { Search, Plus, Users, FlaskConical, Droplets, ChevronDown, GripVertical, Edit2 } from 'lucide-react';
 
-export default function Sidebar({ isOpen, onAddEmployee, onEditEmployee }) {
-  const { state, getDeptEmployees, getEmployeeWeekSummary, DAYS } = useRoster();
+export default function Sidebar({ isOpen, onAddEmployee, onEditEmployee, onDragStartClose }) {
+  const { state, dispatch, getDeptEmployees, getEmployeeWeekSummary, DAYS } = useRoster();
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all'); // 'all', 'lab-service', 'sample-collection'
 
@@ -28,11 +28,18 @@ export default function Sidebar({ isOpen, onAddEmployee, onEditEmployee }) {
   };
 
   const handleDragStart = (e, employee) => {
-    e.dataTransfer.setData('application/json', JSON.stringify({
+    const data = JSON.stringify({
       type: 'employee',
       employeeId: employee.id,
-    }));
+    });
+    e.dataTransfer.setData('application/json', data);
+    e.dataTransfer.setData('text/plain', data);
     e.dataTransfer.effectAllowed = 'copy';
+    
+    // Close sidebar on mobile so user can see the table drop targets
+    if (onDragStartClose) {
+      setTimeout(() => onDragStartClose(), 50);
+    }
   };
 
   return (
@@ -98,33 +105,57 @@ export default function Sidebar({ isOpen, onAddEmployee, onEditEmployee }) {
             <div className="empty-hint">Try adjusting filters</div>
           </div>
         )}
-        {filtered.map(emp => (
-          <div
-            key={emp.id}
-            className="employee-chip"
-            draggable
-            onDragStart={(e) => handleDragStart(e, emp)}
-            onClick={() => onEditEmployee(emp)}
-            style={{ marginBottom: 6 }}
-          >
-            <div className={`avatar ${getDeptClass(emp)}`}>
-              {getInitials(emp.name)}
-            </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {emp.name}
+        {filtered.map(emp => {
+          const isSelected = state.selectedEmployeeId === emp.id;
+          return (
+            <div
+              key={emp.id}
+              className={`employee-chip ${isSelected ? 'selected' : ''}`}
+              draggable
+              onDragStart={(e) => handleDragStart(e, emp)}
+              onClick={() => {
+                dispatch({ 
+                  type: 'SET_SELECTED_EMPLOYEE', 
+                  payload: isSelected ? null : emp.id 
+                });
+              }}
+              style={{ 
+                marginBottom: 6,
+                border: isSelected ? '2px solid var(--primary)' : '1px solid var(--border)',
+                background: isSelected ? 'var(--primary-50)' : 'var(--bg-card)'
+              }}
+            >
+              <div className={`avatar ${getDeptClass(emp)}`}>
+                {getInitials(emp.name)}
               </div>
-              <div style={{ fontSize: 10, color: 'var(--text-muted)', fontWeight: 500 }}>
-                {emp.role}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontWeight: 600, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {emp.name}
+                </div>
+                <div style={{ fontSize: 10, color: 'var(--text-muted)', fontWeight: 500 }}>
+                  {emp.role}
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <button 
+                  className="btn-icon" 
+                  style={{ width: 24, height: 24, padding: 0, opacity: 0.6 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onEditEmployee(emp);
+                  }}
+                >
+                  <Edit2 size={12} />
+                </button>
+                <div className="dept-dots">
+                  {emp.departments.includes('lab-service') && <span className="dept-dot lab" />}
+                  {emp.departments.includes('sample-collection') && <span className="dept-dot collection" />}
+                </div>
+                <GripVertical size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
               </div>
             </div>
-            <div className="dept-dots">
-              {emp.departments.includes('lab-service') && <span className="dept-dot lab" />}
-              {emp.departments.includes('sample-collection') && <span className="dept-dot collection" />}
-            </div>
-            <GripVertical size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Footer Stats */}

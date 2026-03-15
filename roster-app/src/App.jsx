@@ -49,10 +49,26 @@ function AppContent() {
         onSaveImage={() => setPrintMode('jpeg')}
       />
       <div className="app-body">
+        {isSidebarOpen && window.innerWidth <= 768 && (
+          <div 
+            className="sidebar-overlay no-print" 
+            onClick={() => setIsSidebarOpen(false)}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(0,0,0,0.4)',
+              zIndex: 999,
+              animation: 'fadeIn 0.2s ease'
+            }}
+          />
+        )}
         <Sidebar
           isOpen={isSidebarOpen}
           onAddEmployee={() => setEmployeeModal({ mode: 'add' })}
           onEditEmployee={(emp) => setEmployeeModal({ mode: 'edit', employee: emp })}
+          onDragStartClose={() => {
+            if (window.innerWidth <= 768) setIsSidebarOpen(false);
+          }}
         />
         <RosterTable />
       </div>

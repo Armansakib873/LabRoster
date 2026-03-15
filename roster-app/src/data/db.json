@@ -121,9 +121,7 @@
     { "id": "emp-20", "name": "Hashi", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
     { "id": "emp-21", "name": "Emran", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
     { "id": "emp-22", "name": "Arif", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
-    { "id": "emp-23", "name": "Hossain", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
-    { "id": "emp-24", "name": "Mahmudul", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
-    { "id": "emp-25", "name": "Soikt", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" }
+    { "id": "emp-23", "name": "Hossain", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" }
   ],
   "signatories": [
     { "name": "Md Tufazzal Hossain", "title": "Quality Control Manager & Lab In-charge", "org": "A.S.H" },

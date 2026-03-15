@@ -24,7 +24,7 @@ export default function Header({ onToggleSidebar, onSettings, onExport, onPrint,
       </div>
 
       {/* Department Switcher */}
-      <div style={{ display: 'flex', gap: 4 }}>
+      <div className="dept-switcher-mobile">
         {state.departments.map(dept => (
           <button
             key={dept.id}
@@ -54,10 +54,10 @@ export default function Header({ onToggleSidebar, onSettings, onExport, onPrint,
       {/* Actions */}
       <div className="header-actions">
         <button className="btn btn-ghost btn-sm" onClick={onSaveImage} title="Save as JPEG">
-          <Image size={15} /> JPEG
+          <Image size={15} /> <span>JPEG</span>
         </button>
         <button className="btn btn-ghost btn-sm" onClick={onPrint} title="Print Roster">
-          <Printer size={15} /> Print
+          <Printer size={15} /> <span>Print</span>
         </button>
         <button className="btn btn-ghost btn-sm" onClick={onExport} title="Export Data">
           <Download size={15} />

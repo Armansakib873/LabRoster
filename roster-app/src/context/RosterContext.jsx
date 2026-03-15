@@ -159,6 +159,22 @@ function rosterReducer(state, action) {
       return { ...state, rosters };
     }
 
+    case 'REPLACE_ASSIGNMENT': {
+      const { deptId, day, shift, section, oldEmployeeId, newEmployeeId } = action.payload;
+      const rosterKey = deptId;
+      const rosters = { ...state.rosters };
+      if (!rosters[rosterKey]?.[day]?.[shift]?.[section]) return state;
+      const roster = JSON.parse(JSON.stringify(rosters[rosterKey]));
+      
+      // Update the assignment at the correct index, or just filter and push
+      roster[day][shift][section] = roster[day][shift][section].map(a => 
+        a.employeeId === oldEmployeeId ? { ...a, employeeId: newEmployeeId } : a
+      );
+      
+      rosters[rosterKey] = roster;
+      return { ...state, rosters };
+    }
+
     case 'CLEAR_DAY': {
       const { deptId, day } = action.payload;
       const rosterKey = deptId;
@@ -197,6 +213,9 @@ function rosterReducer(state, action) {
       return { ...state, ...action.payload };
     }
 
+    case 'SET_SELECTED_EMPLOYEE':
+      return { ...state, selectedEmployeeId: action.payload };
+
     default:
       return state;
   }
@@ -208,6 +227,7 @@ export function RosterProvider({ children }) {
     ...loaded,
     activeDepartment: loaded.departments[0]?.id || 'lab-service',
     effectiveFrom: loaded.effectiveFrom || getDefaultEffectiveFrom(),
+    selectedEmployeeId: null,
   };
 
   const [state, dispatch] = useReducer(rosterReducer, initialState);

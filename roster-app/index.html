@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Aurora Specialized Hospital - Smart Laboratory Roster Management System for Lab Service and Sample Collection departments." />
     <title>Aurora Roster Manager — Lab & Sample Collection</title>
+    <!-- Mobile Drag and Drop Polyfill -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/default.css">
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/scroll-behaviour.min.js"></script>
+    <script>
+      // Initialize polyfill
+      MobileDragDrop.polyfill({
+        dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride
+      });
+      // Prevent scrolling only while dragging
+      window.addEventListener('touchmove', function(e) {
+        if (e.target.closest('.employee-chip') || e.target.closest('.name-chip')) {
+          e.preventDefault();
+        }
+      }, {passive: false});
+    </script>
   </head>
   <body>
     <div id="root"></div>

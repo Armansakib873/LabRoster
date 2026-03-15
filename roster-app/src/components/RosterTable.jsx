@@ -8,6 +8,7 @@ export default function RosterTable() {
   const dept = getActiveDepartment();
   const roster = getRoster(state.activeDepartment);
   const conflicts = getConflicts(state.activeDepartment);
+  const selectedEmp = state.selectedEmployeeId ? getEmployeeById(state.selectedEmployeeId) : null;
 
   const [assignModal, setAssignModal] = useState(null);
   const [contextMenu, setContextMenu] = useState(null);
@@ -33,31 +34,32 @@ export default function RosterTable() {
     e.preventDefault();
     e.currentTarget.classList.remove('cell-drag-over');
 
-    // Check if it's a move from another cell
-    const moveRaw = e.dataTransfer.getData('text/roster-move');
-    if (moveRaw) {
-      try {
-        const move = JSON.parse(moveRaw);
+    try {
+      const raw = e.dataTransfer.getData('text/roster-move') || 
+                  e.dataTransfer.getData('application/json') || 
+                  e.dataTransfer.getData('text/plain');
+      if (!raw) return;
+      const data = JSON.parse(raw);
+
+      // 1. Internal Move
+      if (data.type === 'move') {
         dispatch({
           type: 'MOVE_ASSIGNMENT',
           payload: {
             deptId: state.activeDepartment,
-            fromDay: move.day,
-            fromShift: move.shift,
-            fromSection: move.section,
+            fromDay: data.day,
+            fromShift: data.shift,
+            fromSection: data.section,
             toDay: day,
             toShift: shiftKey,
             toSection: sectionId,
-            employeeId: move.employeeId,
+            employeeId: data.employeeId,
           }
         });
-      } catch (err) { console.error(err); }
-      return;
-    }
+        return;
+      }
 
-    // Otherwise it's from sidebar
-    try {
-      const data = JSON.parse(e.dataTransfer.getData('application/json'));
+      // 2. Sidebar Drop
       if (data.type === 'employee') {
         const emp = getEmployeeById(data.employeeId);
         if (emp && emp.departments.includes(state.activeDepartment)) {
@@ -73,7 +75,7 @@ export default function RosterTable() {
           });
         }
       }
-    } catch (err) { /* ignore */ }
+    } catch (err) { console.error('Drop error:', err); }
   };
 
   const handleDragOver = (e) => {
@@ -87,9 +89,12 @@ export default function RosterTable() {
 
   // --- Drag assigned chip ---
   const handleChipDragStart = (e, day, shiftKey, sectionId, employeeId) => {
-    e.dataTransfer.setData('text/roster-move', JSON.stringify({
+    const data = JSON.stringify({
+      type: 'move',
       day, shift: shiftKey, section: sectionId, employeeId,
-    }));
+    });
+    e.dataTransfer.setData('text/roster-move', data);
+    e.dataTransfer.setData('text/plain', data);
     e.dataTransfer.effectAllowed = 'move';
     setDragData({ day, shift: shiftKey, section: sectionId, employeeId });
     // style the dragging chip
@@ -99,6 +104,26 @@ export default function RosterTable() {
   const handleChipDragEnd = (e) => {
     e.currentTarget.classList.remove('chip-dragging');
     setDragData(null);
+  };
+
+  const handleCellClick = (day, shiftKey, sectionId) => {
+    if (state.selectedEmployeeId) {
+      const emp = getEmployeeById(state.selectedEmployeeId);
+      if (emp && emp.departments.includes(state.activeDepartment)) {
+        dispatch({
+          type: 'ASSIGN_EMPLOYEE',
+          payload: {
+            deptId: state.activeDepartment,
+            day,
+            shift: shiftKey,
+            section: sectionId,
+            employeeId: state.selectedEmployeeId,
+          }
+        });
+        // Optional: clear selection after assign? User might want to assign to multiple days.
+        // Let's keep it selected for batch assignment.
+      }
+    }
   };
 
   // --- Drop on assigned chip (SWAP) ---
@@ -115,27 +140,48 @@ export default function RosterTable() {
   };
 
   const handleChipDrop = (e, targetDay, targetShiftKey, targetSectionId, targetEmployeeId) => {
+    e.preventDefault();
+    e.stopPropagation();
     e.currentTarget.classList.remove('chip-swap-target');
     
-    if (e.dataTransfer.types.includes('text/roster-move')) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const moveRaw = e.dataTransfer.getData('text/roster-move');
-      if (moveRaw) {
-        try {
-        const move = JSON.parse(moveRaw);
-        if (move.employeeId === targetEmployeeId) return; // Ignored if dropped on itself
-        
+    try {
+      const raw = e.dataTransfer.getData('text/roster-move') || 
+                  e.dataTransfer.getData('application/json') || 
+                  e.dataTransfer.getData('text/plain');
+      if (!raw) return;
+      const data = JSON.parse(raw);
+
+      // Case A: Sidebar Drop (REPLACE)
+      if (data.type === 'employee') {
+        const emp = getEmployeeById(data.employeeId);
+        if (emp && emp.departments.includes(state.activeDepartment)) {
+          dispatch({
+            type: 'REPLACE_ASSIGNMENT',
+            payload: {
+              deptId: state.activeDepartment,
+              day: targetDay,
+              shift: targetShiftKey,
+              section: targetSectionId,
+              oldEmployeeId: targetEmployeeId,
+              newEmployeeId: data.employeeId
+            }
+          });
+        }
+        return;
+      }
+
+      // Case B: Internal Table Move (SWAP)
+      if (data.type === 'move') {
+        if (data.employeeId === targetEmployeeId) return;
         dispatch({
           type: 'SWAP_ASSIGNMENT',
           payload: {
             deptId: state.activeDepartment,
             source: {
-              day: move.day,
-              shift: move.shift,
-              section: move.section,
-              employeeId: move.employeeId,
+              day: data.day,
+              shift: data.shift,
+              section: data.section,
+              employeeId: data.employeeId,
             },
             target: {
               day: targetDay,
@@ -145,10 +191,9 @@ export default function RosterTable() {
             }
           }
         });
-      } catch (err) { console.error(err); }
-    }
-  }
-};
+      }
+    } catch (err) { console.error('Chip drop error:', err); }
+  };
 
   const handleRemove = (day, shiftKey, sectionId, employeeId) => {
     dispatch({
@@ -190,19 +235,25 @@ export default function RosterTable() {
       {/* Toolbar */}
       <div className="roster-toolbar no-print">
         <div className="roster-toolbar-left">
-          <div style={{
-            fontWeight: 700, fontSize: 16, color: 'var(--text)',
-            display: 'flex', alignItems: 'center', gap: 8,
-          }}>
-            <span style={{
-              width: 10, height: 10, borderRadius: '50%',
-              background: dept.id === 'lab-service' ? 'var(--primary)' : 'var(--accent)',
-              display: 'inline-block',
-            }} />
-            {dept.id === 'lab-service' ? 'Department of Laboratory Services' : 'Roster of Sample Collection'}
+          <div className="roster-toolbar-brand-group">
+            <div className="roster-toolbar-title">
+              {dept.id === 'lab-service' ? 'Department of Laboratory Services' : 'Roster of Sample Collection'}
+            </div>
           </div>
         </div>
         <div className="roster-toolbar-right">
+          {selectedEmp && (
+            <div className="stat-badge" style={{ background: 'var(--primary-100)', color: 'var(--primary-dark)', display: 'flex', alignItems: 'center', gap: 6, border: '1px solid var(--primary-200)' }}>
+              <span>Selected: <strong>{selectedEmp.name}</strong></span>
+              <button 
+                className="btn-icon" 
+                style={{ width: 18, height: 18, padding: 0, minHeight: 'auto' }}
+                onClick={() => dispatch({ type: 'SET_SELECTED_EMPLOYEE', payload: null })}
+              >
+                <X size={12} />
+              </button>
+            </div>
+          )}
           {conflicts.length > 0 && (
             <span className="conflict-badge hover-pointer" onClick={() => setShowConflicts(true)} style={{ cursor: 'pointer' }}>
               <AlertTriangle size={13} /> {conflicts.length} conflict{conflicts.length > 1 ? 's' : ''}
@@ -263,10 +314,12 @@ export default function RosterTable() {
                   {shift.sections.map((section, secIdx) => (
                     <div key={section.id} className={`grid-section-col ${secIdx > 0 ? 'border-left' : ''}`}>
                       <div
-                        className="drop-target"
+                        className={`drop-target ${state.selectedEmployeeId ? 'selection-mode' : ''}`}
                         onDrop={(e) => handleDropNew(e, day, shiftKey, section.id)}
+                        onDragEnter={handleDragOver}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
+                        onClick={() => handleCellClick(day, shiftKey, section.id)}
                       >
                         <div className="chips-container-col">
                           {getAssignments(day, shiftKey, section.id).map(assignment => {
