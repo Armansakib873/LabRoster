@@ -1,0 +1,260 @@
+{
+  "exportDate": "2026-03-15T11:44:37.799Z",
+  "version": "1.0",
+  "employees": [
+    {
+      "id": "emp-01",
+      "name": "Arman",
+      "departments": [
+        "lab-service",
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-02",
+      "name": "Kamrul",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-03",
+      "name": "Ayan",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-04",
+      "name": "Yousuf",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Supervisor",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-05",
+      "name": "Rasel",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-06",
+      "name": "Rezaul",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-07",
+      "name": "Sakin",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-08",
+      "name": "Shoikat",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-09",
+      "name": "Nazrul",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-10",
+      "name": "Hamidullah",
+      "departments": [
+        "lab-service",
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-11",
+      "name": "Apon",
+      "departments": [
+        "lab-service",
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-12",
+      "name": "Tufazzal Hossain",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Quality Control Manager",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-13",
+      "name": "Sakib",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-14",
+      "name": "Ryhan",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-15",
+      "name": "Mahfuza",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-16",
+      "name": "Shilpi",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-17",
+      "name": "Sultan",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-18",
+      "name": "Tahmina",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-19",
+      "name": "Neyamot",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-20",
+      "name": "Hashi",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-21",
+      "name": "Emran",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-22",
+      "name": "Arif",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-23",
+      "name": "Hossain",
+      "departments": [
+        "sample-collection"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-24",
+      "name": "Mahmudul",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    },
+    {
+      "id": "emp-25",
+      "name": "Soikt",
+      "departments": [
+        "lab-service"
+      ],
+      "role": "Technologist",
+      "phone": "",
+      "avatar": ""
+    }
+  ],
+  "rosters": {}
+}

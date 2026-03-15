@@ -1,0 +1,235 @@
+{
+  "hospital": {
+    "name": "Aurora Specialized Hospital Ltd.",
+    "address": "19/1 Kakrail, Dhaka-1000",
+    "logo": ""
+  },
+  "departments": [
+    {
+      "id": "lab-service",
+      "name": "Lab Service",
+      "color": "#6366f1",
+      "shifts": {
+        "morning": {
+          "label": "Morning",
+          "time": "8:00 AM - 3:00 PM",
+          "sections": [
+            { "id": "cl-path-haem-micro", "label": "Cl.Path + Haem + Micro" },
+            { "id": "blood-bank-serology-report", "label": "Blood Bank + Serology + Report (Night)" },
+            { "id": "bio-immuno-qc", "label": "Bio + Immuno + QC" }
+          ]
+        },
+        "evening": {
+          "label": "Evening",
+          "time": "3:00 PM - 10:00 PM",
+          "sections": [
+            { "id": "bio-immuno-qc-eve", "label": "Bio + Immuno + QC" },
+            { "id": "blood-bank-serology-morning-report", "label": "Blood Bank + Serology + Report (Morning)" },
+            { "id": "cl-path-haem-micro-report-eve", "label": "Cl.Path + Haem + Micro + Report (Evening)" }
+          ]
+        },
+        "night": {
+          "label": "Night",
+          "time": "10:00 PM - 8:00 AM",
+          "sections": [
+            { "id": "all-department-night", "label": "All Department" }
+          ]
+        },
+        "monitoring": {
+          "label": "Monitoring",
+          "time": "QC + Requisition + SOP & Over all Monitoring",
+          "sections": [
+            { "id": "monitoring", "label": "Monitoring" }
+          ]
+        },
+        "dayoff": {
+          "label": "Day Off",
+          "time": "Staff Day Off",
+          "sections": [
+            { "id": "staff-dayoff", "label": "Day Off" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sample-collection",
+      "name": "Sample Collection",
+      "color": "#0ea5e9",
+      "shifts": {
+        "morning": {
+          "label": "Morning",
+          "time": "7:00 AM - 3:00 PM",
+          "sections": [
+            { "id": "indoor-outdoor-male", "label": "Indoor + Outdoor (Male)" },
+            { "id": "outdoor-indoor-female", "label": "Outdoor + Indoor (Female)" }
+          ]
+        },
+        "evening": {
+          "label": "Evening",
+          "time": "3:00 PM - 11:00 PM",
+          "sections": [
+            { "id": "indoor-male-female", "label": "Indoor (Male/Female)" },
+            { "id": "outdoor-male", "label": "Outdoor (Male)" },
+            { "id": "outdoor-female", "label": "Outdoor (Female)" }
+          ]
+        },
+        "night": {
+          "label": "Night",
+          "time": "10:00 PM - 8:00 AM",
+          "sections": [
+            { "id": "indoor-cl-path", "label": "Indoor + Cl.Path" },
+            { "id": "outdoor-com-mor", "label": "Outdoor + Com.mor" }
+          ]
+        },
+        "evening-histo": {
+          "label": "Evening (Histo & Cyto)",
+          "time": "2:30 PM - 10:00 PM",
+          "sections": [
+            { "id": "histo-cyto", "label": "Histo and Cyto" }
+          ]
+        },
+        "dayoff": {
+          "label": "Day Off",
+          "time": "",
+          "sections": [
+            { "id": "sc-dayoff", "label": "Day Off" }
+          ]
+        }
+      }
+    }
+  ],
+  "employees": [
+    { "id": "emp-01", "name": "Arman", "departments": ["lab-service", "sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-02", "name": "Kamrul", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-03", "name": "Ayan", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-04", "name": "Yousuf", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-05", "name": "Rasel", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-06", "name": "Rezaul", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-07", "name": "Sakin", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-08", "name": "Shoikat", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-09", "name": "Nazrul", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-10", "name": "Hamidullah", "departments": ["lab-service", "sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-11", "name": "Apon", "departments": ["lab-service", "sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-12", "name": "Tufazzal Hossain", "departments": ["lab-service"], "role": "Quality Control Manager", "phone": "", "avatar": "" },
+    { "id": "emp-13", "name": "Sakib", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-14", "name": "Ryhan", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-15", "name": "Mahfuza", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-16", "name": "Shilpi", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-17", "name": "Sultan", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-18", "name": "Tahmina", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-19", "name": "Neyamot", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-20", "name": "Hashi", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-21", "name": "Emran", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-22", "name": "Arif", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-23", "name": "Hossain", "departments": ["sample-collection"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-24", "name": "Mahmudul", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" },
+    { "id": "emp-25", "name": "Soikt", "departments": ["lab-service"], "role": "Technologist", "phone": "", "avatar": "" }
+  ],
+  "signatories": [
+    { "name": "Md Tufazzal Hossain", "title": "Quality Control Manager & Lab In-charge", "org": "A.S.H" },
+    { "name": "Golam Raquib", "title": "Asst. General Manager", "org": "A.S.H" },
+    { "name": "Prof. Dr. Md. Maruf-Ur-Rahman", "title": "Chief Co-Ordinator, Laboratory Services", "org": "A.S.H" },
+    { "name": "Assoc. Prof. Dr. Nahiduzzaman Shazzad", "title": "Supervised Director, Laboratory Services", "org": "A.S.H" }
+  ],
+  "rosters": {
+    "lab-service": {
+      "Saturday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-09" }], "blood-bank-serology-report": [{ "employeeId": "emp-02" }], "bio-immuno-qc": [{ "employeeId": "emp-04" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-01" }, { "employeeId": "emp-03" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-06" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-05" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-10" }, { "employeeId": "emp-08" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-04" }, { "employeeId": "emp-24" }] }
+      },
+      "Sunday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-08" }, { "employeeId": "emp-10" }], "blood-bank-serology-report": [{ "employeeId": "emp-09" }], "bio-immuno-qc": [{ "employeeId": "emp-03" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-04" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-01" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-02" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-06" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-05" }] }
+      },
+      "Monday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-03" }, { "employeeId": "emp-05" }], "blood-bank-serology-report": [{ "employeeId": "emp-06" }], "bio-immuno-qc": [{ "employeeId": "emp-08" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-09" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-04" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-01" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-02" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-10" }] }
+      },
+      "Tuesday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-04" }], "blood-bank-serology-report": [{ "employeeId": "emp-06" }], "bio-immuno-qc": [{ "employeeId": "emp-05" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-03" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-09" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-08" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-01" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-02" }] }
+      },
+      "Wednesday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-01" }], "blood-bank-serology-report": [{ "employeeId": "emp-03" }], "bio-immuno-qc": [{ "employeeId": "emp-02" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-05" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-08" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-09" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-04" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-06" }] }
+      },
+      "Thursday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-04" }], "blood-bank-serology-report": [{ "employeeId": "emp-06" }], "bio-immuno-qc": [{ "employeeId": "emp-07" }, { "employeeId": "emp-10" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-08" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-02" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-03" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-09" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-01" }] }
+      },
+      "Friday": {
+        "morning": { "cl-path-haem-micro": [{ "employeeId": "emp-06" }], "blood-bank-serology-report": [{ "employeeId": "emp-05" }], "bio-immuno-qc": [{ "employeeId": "emp-01" }] },
+        "evening": { "bio-immuno-qc-eve": [{ "employeeId": "emp-02" }], "blood-bank-serology-morning-report": [{ "employeeId": "emp-03" }], "cl-path-haem-micro-report-eve": [{ "employeeId": "emp-04" }] },
+        "night": { "all-department-night": [{ "employeeId": "emp-08" }] },
+        "monitoring": { "monitoring": [{ "employeeId": "emp-12" }] },
+        "dayoff": { "staff-dayoff": [{ "employeeId": "emp-09" }] }
+      }
+    },
+    "sample-collection": {
+      "Saturday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-13" }, { "employeeId": "emp-14" }], "outdoor-indoor-female": [{ "employeeId": "emp-15" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-16" }], "outdoor-male": [{ "employeeId": "emp-17" }], "outdoor-female": [{ "employeeId": "emp-18" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-19" }], "outdoor-com-mor": [{ "employeeId": "emp-20" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-21" }] }
+      },
+      "Sunday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-19" }], "outdoor-indoor-female": [{ "employeeId": "emp-20" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-21" }], "outdoor-male": [{ "employeeId": "emp-22" }], "outdoor-female": [{ "employeeId": "emp-23" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-13" }], "outdoor-com-mor": [{ "employeeId": "emp-14" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-15" }] }
+      },
+      "Monday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-15" }, { "employeeId": "emp-16" }], "outdoor-indoor-female": [{ "employeeId": "emp-17" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-18" }], "outdoor-male": [{ "employeeId": "emp-19" }], "outdoor-female": [{ "employeeId": "emp-20" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-21" }], "outdoor-com-mor": [{ "employeeId": "emp-22" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-23" }] }
+      },
+      "Tuesday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-21" }, { "employeeId": "emp-22" }], "outdoor-indoor-female": [{ "employeeId": "emp-23" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-13" }], "outdoor-male": [{ "employeeId": "emp-14" }], "outdoor-female": [{ "employeeId": "emp-15" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-16" }], "outdoor-com-mor": [{ "employeeId": "emp-17" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-18" }] }
+      },
+      "Wednesday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-17" }, { "employeeId": "emp-18" }], "outdoor-indoor-female": [{ "employeeId": "emp-19" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-20" }], "outdoor-male": [{ "employeeId": "emp-21" }], "outdoor-female": [{ "employeeId": "emp-22" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-23" }], "outdoor-com-mor": [{ "employeeId": "emp-13" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-14" }] }
+      },
+      "Thursday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-14" }, { "employeeId": "emp-15" }], "outdoor-indoor-female": [{ "employeeId": "emp-16" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-17" }], "outdoor-male": [{ "employeeId": "emp-18" }], "outdoor-female": [{ "employeeId": "emp-19" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-20" }], "outdoor-com-mor": [{ "employeeId": "emp-21" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-22" }] }
+      },
+      "Friday": {
+        "morning": { "indoor-outdoor-male": [{ "employeeId": "emp-22" }, { "employeeId": "emp-23" }], "outdoor-indoor-female": [{ "employeeId": "emp-13" }] },
+        "evening": { "indoor-male-female": [{ "employeeId": "emp-14" }], "outdoor-male": [{ "employeeId": "emp-15" }], "outdoor-female": [{ "employeeId": "emp-16" }] },
+        "night": { "indoor-cl-path": [{ "employeeId": "emp-17" }], "outdoor-com-mor": [{ "employeeId": "emp-18" }] },
+        "dayoff": { "sc-dayoff": [{ "employeeId": "emp-19" }] }
+      }
+    }
+  },
+  "settings": {
+    "weekStartDay": "Saturday",
+    "daysOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  }
+}
